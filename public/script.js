@@ -8,6 +8,9 @@ images = images ? JSON.parse(images) : {};
 let lovedimages = localStorage.getItem('lovedimages');
 lovedimages = lovedimages ? JSON.parse(lovedimages) : [];
 
+let labels = localStorage.getItem('labels');
+labels = labels ? JSON.parse(labels) : [];
+
 
 async function fetchData(url) {
   try {
@@ -208,8 +211,6 @@ document.getElementById('removelabelbutton').addEventListener('click', function 
     if (selectedItem in images) {
       lovedimages = lovedimages.filter(item => !images[selectedItem].includes(item));
       delete images[selectedItem];
-      labels = localStorage.getItem('labels');
-      labels = labels ? JSON.parse(labels) : [];
       labels = labels.filter(item => item != selectedItem);
       localStorage.setItem('lovedimages', JSON.stringify(lovedimages));
       localStorage.setItem('labels', JSON.stringify(labels));
@@ -238,8 +239,6 @@ function CheckAPI() {
 
 //add new level
 function addLabel(name) {
-  let labels = localStorage.getItem('labels');
-  labels = labels ? JSON.parse(labels) : [];
   if (!(labels.includes(name))) labels.push(name);
   else {
     alert('Duplicate Labels...');
@@ -262,10 +261,10 @@ function addImage(name, url) {
     alert('invalid image url');
     return;
   }
-  // if (images[name].includes(url)) {
-  //   alert('Duplicate image.');
-  //   return;
-  // }
+  if (images[name].includes(url)) {
+    alert('Duplicate image.');
+    return;
+  }
   images[name].push(url);
   localStorage.setItem('images', JSON.stringify(images));
   //updates lovedimages
@@ -314,9 +313,12 @@ function getImageURL(id) {
 }
 //assign image meme in label when clicked on love 
 async function assignFavMeme(id) {
+  if(labels.length == 0){
+    alert('Add a label first');
+    return;
+  }
   let url;
   let button = event.target;
-
   if (id === 0) {
     let img = button.closest('.img').querySelector('img');
     url = img.src;
@@ -377,7 +379,8 @@ async function main() {
     if (CheckAPI()) {
       let reponse = await fetchData(`https://api.humorapi.com/memes/search?api-key=${apiKey}&number=9`);
       if (reponse) {
-        jsondata = reponse.memes;
+        jsondata = reponse;
+
         updateMemeItems(jsondata);
       }
     }
