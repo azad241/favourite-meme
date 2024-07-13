@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>Favourite Meme</title>
+</head>
+
+<body>
+  
+  <dialog id="apiKeyModal" class="modal">
+    <div class="modal-box">
+      <h2 class="font-bold text-lg">Enter API Key</h2>
+      <input id="apiKeyInput" type="text" placeholder="API Key" class="input input-bordered w-full my-4">
+      <div class="modal-action">
+        <button id="saveApiKey" class="btn">Save</button>
+
+        <form class="modal-action" method="dialog">
+          <button id="crossmodal" class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="labelsModal" class="modal">
+    <div class="modal-box">
+      <h2 class="font-bold text-lg">Add Favourite Memes Labels</h2>
+      <select id="labellist" class="select select-bordered w-full max-w-xs">
+        <option disabled selected>Select a label from the list below</option>
+      </select>
+      <div class="modal-action">
+        <button id="saveMeme" class="btn">Save</button>
+        <form class="modal-action" method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="addNewLabelModal" class="modal">
+    <div class="modal-box">
+      <h2 class="font-bold text-lg">Add New Label</h2>
+      <input id="addLabel" type="text" placeholder="Enter Name" class="input input-bordered w-full my-4">
+      <div class="modal-action">
+        <button id="savenewlabel" class="btn">Save</button>
+        <form class="modal-action" method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="removelabelModal" class="modal">
+    <div class="modal-box">
+      <h2 class="font-bold text-lg">Remove a Label</h2>
+      <select id="labellist" class="select select-bordered w-full max-w-xs removelabelclass ">
+        <option disabled selected>Select a label from the list below</option>
+      </select>
+      <div class="modal-action">
+        <button id="removelabelbutton" class="btn">Remove</button>
+        <form class="modal-action" method="dialog">
+          <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+        </form>
+      </div>
+    </div>
+  </dialog>
+
+
+  <div class="drawer md:hidden z-10">
+    <input id="my-drawer-3" type="checkbox" class="drawer-toggle" /> 
+    <div class="drawer-side">
+      <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label> 
+      <div class="menu p-4 w-80 min-h-full bg-base-200 text-2xl">
+        <div class="left-head border-b-2 border-base-00 h-16 flex items-center text-center justify-center">
+          <a href="/" class="link link-primary text-center text-2xl font-bold no-underline">Favourite Meme</a>
+        </div>
+        <div class="labeldiv p-2">
+          <button onclick="document.getElementById('addNewLabelModal').setAttribute('open', '')"  class="btn btn-primary w-full  p-2 my-3">Add a New Label</button>
+          <button onclick="document.getElementById('removelabelModal').setAttribute('open', '')" class="btn btn-secondary w-full  p-2 mb-3">Remove a Lable</button>
+          <hr>
+        </div>
+        <p class="font-semibold p-2">List of Favourite Labels</p>
+        <div class="f-items overflow-y-auto flex-1">
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section flex h-screen w-full">
+    <div class="left hidden md:flex md:w-1/4  border-r-2 border-base-00 flex-col">
+      <div class="left-head border-b-2 border-base-00 h-16 flex items-center text-center justify-center">
+        <a href="/" class="link link-primary text-center text-2xl font-bold no-underline">Favourite Meme</a>
+      </div>
+      <div class="labeldiv p-2">
+        <button onclick="document.getElementById('addNewLabelModal').setAttribute('open', '')"  class="btn btn-primary w-full  p-2 my-3">Add a New Label</button>
+        <button onclick="document.getElementById('removelabelModal').setAttribute('open', '')" class="btn btn-secondary w-full  p-2 mb-3">Remove a Lable</button>
+        <hr>
+      </div>
+      <p class="font-semibold p-2">List of Favourite Labels</p>
+      <div class="f-items overflow-y-auto flex-1">
+
+      </div>
+    </div>
+    <div class="main flex-1 w-full md:w-3/4 flex flex-col">
+      <div class="custom-nav flex justify-between w-full items-center h-16 border-base-00 border-b-2 p-2 ">
+        <div class="menuButton md:hidden">
+          <label for="my-drawer-3" class="btn btn-square btn-ghost drawer-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="inline-block h-5 w-5 stroke-current">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </label>
+        </div>
+        <div class="search-box">
+          <label class="input input-bordered flex items-center gap-2">
+            <input id="realtimeSearch" type="text" class="grow" placeholder="Search" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" class="h-4 w-4 opacity-70">
+              <path fill-rule="evenodd"
+                d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z"
+                clip-rule="evenodd" />
+            </svg>
+          </label>
+        </div>
+
+        <div class="dropdown theme-controller lg:pr-2">
+          <div tabindex="0" role="button" class="btn m-1">
+            Theme
+            <svg width="12px" height="12px" class="inline-block h-2 w-2 fill-current opacity-60"
+              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2048 2048">
+              <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+            </svg>
+          </div>
+          <ul tabindex="0" class="dropdown-content bg-base-300 rounded-box z-20 p-2 shadow-2xl">
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Light"
+                value="light" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Dark"
+                value="dark" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cyberpunk"
+                value="cyberpunk" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Valentine"
+                value="valentine" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Aqua" value="aqua" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Cupcake" value="cupcake" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Bumblebee" value="bumblebee" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Emerald" value="emerald" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Corporate" value="corporate" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Synthwave" value="synthwave" />
+            </li>
+            <li>
+              <input type="radio" name="theme-dropdown"
+                class="theme-controller btn btn-sm btn-block btn-ghost justify-start" aria-label="Retro" value="retro" />
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div class="content overflow-auto" id="content">
+        <div id="meme-items" class="meme-items flex flex-wrap justify-center">
+
+          <!-- <div class="p-2 mt-5">
+            <p class="text-center">You need to set an API Key from HumorAPI to get the meme feed!</p>
+            <div class="flex justify-center"><button onclick="apiKeyModal.showModal()" class="btn btn-primary font-semibold p-4 m-2">Set API KEY</button></div>
+          </div> -->
+
+
+          <!-- <div class="img relative bg-base-200 m-4 rounded-lg">
+            <div class="top-5 right-5 absolute z-10 "><button id="998180" onclick="assignFavMeme(998180)" class="fa-regular fa-heart fa-2xl text-red-700"></button></div>
+            <img class="h-96 w-[320px] p-3 hover:scale-105 transition-transform z-0 " src="https://i.redd.it/3owyf1fvsaad1.jpeg" alt="">
+          </div>
+          <div class="img relative bg-base-200 m-4 rounded-lg">
+            <div class="top-5 right-5 absolute z-10 "><i id="998180" class="fa-regular fa-heart fa-2xl text-red-700"></i></div>
+            <img class="h-96 w-[320px] p-3 hover:scale-105 transition-transform z-0 " src="https://i.redd.it/wmi49q3rq3bd1.jpeg" alt="">
+          </div>
+          <div class="img relative bg-base-200 m-4 rounded-lg">
+            <div class="top-5 right-5 absolute z-10 "><i id="998180" class="fa-regular fa-heart fa-2xl text-red-700"></i></div>
+            <img class="h-96 w-[320px] p-3 hover:scale-105 transition-transform z-0 " src="https://i.redd.it/nw9ikxptuxad1.jpeg" alt="">
+          </div>
+          <div class="img relative bg-base-200 m-4 rounded-lg">
+            <div class="top-5 right-5 absolute z-10 "><i i="998180" class="fa-regular fa-heart fa-2xl text-red-700"></i></div>
+            <img class="h-96 w-[320px] p-3 hover:scale-105 transition-transform z-0 " src="https://i.redd.it/3owyf1fvsaad1.jpeg" alt="">
+          </div> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="/main.js"></script>
+  <script src="/script.js" defer></script>
+</body>
+
+</html>

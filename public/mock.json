@@ -1,0 +1,83 @@
+{
+  "memes": [
+    {
+      "id": 1022512,
+      "description": "What kinda of psychopaths are ok with this?",
+      "url": "https://i.redd.it/bkpzrtfub1cd1.jpeg",
+      "type": "image/jpeg",
+      "width": 1027,
+      "height": 1200,
+      "ratio": 0.855833333333333
+    },
+    {
+      "id": 1022514,
+      "description": "A bit of german will come in handy here.",
+      "url": "https://i.redd.it/9amb890a31cd1.png",
+      "type": "image/png",
+      "width": 519,
+      "height": 643,
+      "ratio": 0.807153965785381
+    },
+    {
+      "id": 1022518,
+      "description": "Bag - check , sandwich - check , water - check. \"Yah mah I'm ready!:D\" ",
+      "url": "https://i.redd.it/nzmm5sbiw0cd1.jpeg",
+      "type": "image/jpeg",
+      "width": 1080,
+      "height": 997,
+      "ratio": 1.08324974924774
+    },
+    {
+      "id": 1022520,
+      "description": "Ignoring such a person would've been better",
+      "url": "https://i.redd.it/5ckwl5jyv0cd1.png",
+      "type": "image/png",
+      "width": 1080,
+      "height": 1074,
+      "ratio": 1.00558659217877
+    },
+    {
+      "id": 1022538,
+      "description": "On brotha's soul",
+      "url": "https://i.redd.it/ggpcs9fy80cd1.jpeg",
+      "type": "image/jpeg",
+      "width": 1080,
+      "height": 1080,
+      "ratio": 1
+    },
+    {
+      "id": 1022540,
+      "description": "Get pranked",
+      "url": "https://i.redd.it/sm4vi1ej80cd1.png",
+      "type": "image/png",
+      "width": 720,
+      "height": 709,
+      "ratio": 1.01551480959097
+    },
+    {
+      "id": 1022546,
+      "description": "I think I've heard this story before. Any uncertainty in the models means we're totally fine and corporations can continue doing whatever they want, public harm be damned. ",
+      "url": "https://i.redd.it/zx0ewvqn00cd1.jpeg",
+      "type": "image/jpeg",
+      "width": 500,
+      "height": 503,
+      "ratio": 0.99403578528827
+    },
+    {
+      "id": 1022560,
+      "description": "mondays am i right",
+      "url": "https://i.redd.it/j64s4ir0dzbd1.png",
+      "type": "image/png",
+      "width": 767,
+      "height": 460,
+      "ratio": 1.66739130434783
+    },
+    {
+      "id": 1023940,
+      "description": "Sticky hands: Tried it only once as a young lad. Made a sticky mess in the process.",
+      "url": "https://i.imgur.com/z7NLjBQ.jpg",
+      "type": "image/jpeg"
+    }
+  ],
+  "available": 264688
+}
